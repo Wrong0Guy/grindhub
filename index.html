@@ -44,8 +44,20 @@
             font-weight: 700;
             grid-column: 1 / -1;
             text-align: center;
-            color: #ffffff; /* White text */
             font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .hustle-hub {
+            display: inline-block;
+        }
+
+        .hustle-hub span {
+            display: inline-block;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .hustle-hub span:hover {
+            transform: translateY(-5px);
         }
 
         .tagline {
@@ -169,8 +181,21 @@
 <body>
 
     <div class="container">
-        <h1>Hustle Hub</h1>
-        <div class="tagline">Grind Growth Rise</div>
+        <h1>
+            <div class="hustle-hub">
+                <span style="color: #ff6f61;">H</span> <!-- Orange -->
+                <span style="color: #ffcc00;">U</span> <!-- Yellow -->
+                <span style="color: #00bcd4;">S</span> <!-- Cyan -->
+                <span style="color: #ff4081;">T</span> <!-- Pink -->
+                <span style="color: #4caf50;">L</span> <!-- Green -->
+                <span style="color: #e91e63;">E</span> <!-- Magenta -->
+                <span style="color: #ffffff;">&nbsp;</span> <!-- Space -->
+                <span style="color: #ff9800;">H</span> <!-- Orange -->
+                <span style="color: #9c27b0;">U</span> <!-- Purple -->
+                <span style="color: #03a9f4;">B</span> <!-- Blue -->
+            </div>
+        </h1>
+        <div class="tagline">GRIND GROW RISE</div>
         <!-- Profiles will be dynamically inserted here -->
     </div>
 
