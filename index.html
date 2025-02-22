@@ -1,20 +1,21 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hustle</title>
-    <!-- Import Roboto and Lato fonts from Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@600&family=Lato:wght@600&display=swap" rel="stylesheet">
+    <title>HustleHub</title>
+    <!-- Import Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
     <!-- Import Firebase (compatibility version) -->
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
     <style>
         /* General Styles */
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #ff6a00, #ee0979);
-            color: white;
+            font-family: 'Inter', sans-serif;
+            background: #121212; /* Dark background */
+            color: #ffffff; /* White text */
             margin: 0;
             padding: 0;
             display: flex;
@@ -30,99 +31,91 @@
             grid-template-rows: auto; /* Auto rows for flexibility */
             gap: 20px;
             max-width: 1000px;
-            width: 100%;
-            padding: 20px; /* Reduced padding for better mobile spacing */
-            background-color: rgba(34, 34, 34, 0.9);
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px); /* Adds a blur effect */
+            width: 90%;
+            padding: 30px;
+            background: #1e1e1e; /* Dark container background */
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         h1 {
-            font-size: 3em;
-            margin-bottom: 10px; /* Adjusted for tagline */
+            font-size: 2.5em;
+            margin: 0;
             font-weight: 700;
-            grid-column: 1 / -1; /* Span all columns */
-            text-align: center; /* Center the title */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            grid-column: 1 / -1;
+            text-align: center;
+            color: #ffffff; /* White text */
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .tagline {
-            font-size: 2em; /* Larger font size */
-            font-weight: 700; /* Bolder font weight */
-            margin-bottom: 30px;
-            grid-column: 1 / -1; /* Span all columns */
-            text-align: center; /* Center the tagline */
-            background: linear-gradient(135deg, #ffd700, #ffcc00); /* Golden gradient */
-            -webkit-background-clip: text; /* Clip text to background */
-            -webkit-text-fill-color: transparent; /* Make text transparent */
-            text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700; /* Golden shine effect */
+            font-size: 1.2em;
+            font-weight: 500;
+            margin-bottom: 40px;
+            grid-column: 1 / -1;
+            text-align: center;
+            color: #b0b0b0; /* Light gray for contrast */
         }
 
         /* Profile Card Styles */
         .profile {
-            border-radius: 15px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 250px; /* Use min-height instead of height */
+            min-height: 200px;
             width: 100%;
             text-align: center;
             box-sizing: border-box;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            color: #000; /* Dark black text color */
+            background: #2a2a2a; /* Dark card background */
+            border: 1px solid #444; /* Subtle border */
         }
 
         .profile:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
         }
 
         .profile .name {
-            font-family: 'Roboto', sans-serif; /* Roboto for profile names */
-            font-size: 1.8em;
+            font-size: 1.5em;
             font-weight: 600;
             margin-bottom: 10px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            color: #ffffff; /* White text */
         }
 
         .profile .stats {
-            font-family: 'Lato', sans-serif; /* Lato for Growth Days */
-            font-size: 1.1em; /* Slightly smaller font size */
+            font-size: 1em;
             margin-bottom: 20px;
-            color: #333; /* Darker text color for stats */
-            font-weight: 600; /* Bold text */
+            color: #b0b0b0; /* Light gray for contrast */
         }
 
         .profile .stats span {
-            font-size: 1.4em; /* Slightly larger for the number */
-            font-weight: 800; /* Extra bold for the number */
-            color: #222; /* Darker color for the number */
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #ffffff; /* White text */
         }
 
         .profile button {
-            padding: 12px 20px;
-            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            background: #444; /* Dark button background */
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 1.2em;
+            font-size: 1em;
             cursor: pointer;
             transition: background 0.3s ease, transform 0.2s ease;
-            margin-top: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .profile button:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: #666; /* Lighter on hover */
             transform: translateY(-2px);
         }
 
         .profile button.disabled {
-            background: #888;
+            background: #333; /* Darker for disabled state */
             cursor: not-allowed;
             transform: none;
         }
@@ -133,37 +126,42 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8);
+            background: #333; /* Dark toast background */
             color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 1em;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 0.9em;
             z-index: 1000;
             display: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             .container {
-                grid-template-columns: 1fr; /* Single column for mobile */
-                padding: 10px; /* Reduced padding for mobile */
+                grid-template-columns: 1fr;
+                padding: 20px;
             }
 
             h1 {
-                font-size: 2.5em;
+                font-size: 2em;
             }
 
             .tagline {
-                font-size: 1.5em; /* Slightly smaller on mobile */
+                font-size: 1em;
             }
 
             .profile {
-                min-height: auto; /* Allow cards to adjust height on mobile */
-                padding: 15px;
+                min-height: 180px;
+                padding: 20px;
+            }
+
+            .profile .name {
+                font-size: 1.3em;
             }
 
             .profile .stats span {
-                font-size: 1.2em; /* Slightly smaller on mobile */
+                font-size: 1.1em;
             }
         }
     </style>
@@ -171,8 +169,8 @@
 <body>
 
     <div class="container">
-        <h1>Achievement Arena</h1>
-        <div class="tagline">Grind & Rise</div>
+        <h1>Hustle Hub</h1>
+        <div class="tagline">Grind Growth Rise</div>
         <!-- Profiles will be dynamically inserted here -->
     </div>
 
@@ -197,17 +195,17 @@
 
         // Profile Data
         const profiles = [
-            { id: "profile1", name: "Amruta", color: "linear-gradient(135deg, #ff9a9e, #fad0c4)" },
-            { id: "profile2", name: "Mitali", color: "linear-gradient(135deg, #ff7e5f, #feb47b)" }, 
-            { id: "profile3", name: "Anup", color: "linear-gradient(135deg, #fbc2eb, #a6c1ee)" },
-            { id: "profile4", name: "Atharv", color: "linear-gradient(135deg, #a18cd1, #fbc2eb)" } 
+            { id: "profile1", name: "Amruta" },
+            { id: "profile2", name: "Mitali" },
+            { id: "profile3", name: "Anup" },
+            { id: "profile4", name: "Atharv" }
         ];
 
         // Dynamically create profile cards
         const container = document.querySelector('.container');
         profiles.forEach(profile => {
             const profileHTML = `
-                <div class="profile" id="${profile.id}" style="background: ${profile.color};">
+                <div class="profile" id="${profile.id}">
                     <span class="name">${profile.name}</span>
                     <div class="stats">
                         <span>Growth Days: <span id="${profile.id}-days">0</span></span>
@@ -240,7 +238,7 @@
                         document.getElementById(`${profile.id}-days`).innerText = data.days || 0;
 
                         // Disable button if already incremented today
-                        const today = new Date().toLocaleDateString('en-CA'); // Use local time
+                        const today = new Date().toLocaleDateString('en-CA');
                         if (data.lastIncrementDate === today) {
                             document.getElementById(`${profile.id}-btn`).classList.add('disabled');
                             document.getElementById(`${profile.id}-btn`).disabled = true;
