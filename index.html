@@ -60,6 +60,20 @@
             transform: translateY(-5px);
         }
 
+        /* Animation Keyframes */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .hustle-hub span.animated {
+            animation: bounce 0.5s ease-in-out;
+        }
+
         .tagline {
             font-size: 1.2em;
             font-weight: 500;
@@ -183,16 +197,16 @@
     <div class="container">
         <h1>
             <div class="hustle-hub">
-                <span style="color: #ff6f61;">H</span> <!-- Orange -->
-                <span style="color: #ffcc00;">U</span> <!-- Yellow -->
-                <span style="color: #00bcd4;">S</span> <!-- Cyan -->
-                <span style="color: #ff4081;">T</span> <!-- Pink -->
-                <span style="color: #4caf50;">L</span> <!-- Green -->
-                <span style="color: #e91e63;">E</span> <!-- Magenta -->
-                <span style="color: #ffffff;">&nbsp;</span> <!-- Space -->
-                <span style="color: #ff9800;">H</span> <!-- Orange -->
-                <span style="color: #9c27b0;">U</span> <!-- Purple -->
-                <span style="color: #03a9f4;">B</span> <!-- Blue -->
+                <span class="letter" style="color: #ff6f61;">H</span> <!-- Orange -->
+                <span class="letter" style="color: #ffcc00;">U</span> <!-- Yellow -->
+                <span class="letter" style="color: #00bcd4;">S</span> <!-- Cyan -->
+                <span class="letter" style="color: #ff4081;">T</span> <!-- Pink -->
+                <span class="letter" style="color: #4caf50;">L</span> <!-- Green -->
+                <span class="letter" style="color: #e91e63;">E</span> <!-- Magenta -->
+                <span class="letter" style="color: #ffffff;">&nbsp;</span> <!-- Space -->
+                <span class="letter" style="color: #ff9800;">H</span> <!-- Orange -->
+                <span class="letter" style="color: #9c27b0;">U</span> <!-- Purple -->
+                <span class="letter" style="color: #03a9f4;">B</span> <!-- Blue -->
             </div>
         </h1>
         <div class="tagline">GRIND GROW RISE</div>
@@ -277,6 +291,9 @@
                 console.error("Error loading data:", error);
                 showToast("Failed to load data. Please try again.");
             }
+
+            // Start the letter animation sequence immediately
+            animateLetters();
         };
 
         // Increment Growth Days
@@ -313,6 +330,30 @@
                 console.error("Error incrementing points:", error);
                 showToast("Failed to level up. Please try again.");
             }
+        }
+
+        // Animate the letters in sequence
+        function animateLetters() {
+            const letters = document.querySelectorAll('.hustle-hub .letter');
+            let index = 0;
+
+            function animateNextLetter() {
+                if (index < letters.length) {
+                    letters[index].classList.add('animated');
+                    letters[index].addEventListener('animationend', () => {
+                        letters[index].classList.remove('animated');
+                        index++;
+                        animateNextLetter(); // Move to the next letter immediately
+                    }, { once: true });
+                } else {
+                    // Restart the animation immediately after the last letter
+                    index = 0;
+                    animateNextLetter();
+                }
+            }
+
+            // Start the animation immediately
+            animateNextLetter();
         }
     </script>
 
